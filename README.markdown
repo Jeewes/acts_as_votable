@@ -14,7 +14,7 @@ The main goals of this gem are:
 
 Just add the following to your Gemfile.
 
-    gem 'acts_as_votable'
+    gem 'acts_as_votable', '~> 0.4.0'
 
 And follow that up with a ``bundle install``.
 
@@ -158,6 +158,27 @@ You can also check whether the voter has voted up or down.
     
 Aliases for methods ``voted_up_on?`` and ``voted_down_on?`` are: ``voted_up_for?``, ``voted_down_for?``,
 ``liked?`` and ``disliked?``.
+
+Also, you can obtain a list of all the objects a user has voted for.
+This returns the actual objects instead of instances of the Vote model.
+All objects are eager loaded
+
+    @user.find_voted_items
+
+    @user.find_up_voted_items
+    @user.find_liked_items
+
+    @user.find_down_voted_items
+    @user.find_disliked_items
+
+Members of an individual model that a user has voted for can also be
+displayed. The result is an ActiveRecord Relation.
+
+    @user.get_voted Comment
+
+    @user.get_up_voted Comment
+
+    @user.get_down_voted Comment
 
 ### Registered Votes
 
